@@ -1,10 +1,13 @@
 pipeline {
     agent any
+
     stages {
-        stage("SSH to Remote Host") {
+        stage('SSH to Remote Host') {
             steps {
-                sshagent(['0199d99b-2d91-426e-97a8-595cbbda23b2']) {
-                    sh "ls"
+                sshagent(['ubuntu']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@44.211.205.183 ls
+                    '''
                 }
             }
         }
