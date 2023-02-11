@@ -3,8 +3,8 @@ pipeline {
     stages {
         stage("SSH to Remote Host") {
             steps {
-                sshagent(['0199d99b-2d91-426e-97a8-595cbbda23b2']) {
-                    sh "ls"
+                sshagent(credentials: ['myid']) {
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@44.211.205.183 'ls -l'"
                 }
             }
         }
