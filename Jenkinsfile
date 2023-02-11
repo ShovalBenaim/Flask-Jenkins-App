@@ -1,16 +1,12 @@
 pipeline {
-  agent any
+    agent any
 
-  stages {
-    stage('SSH to Remote Host') {
-      steps {
-        withEnv(['SSH_KEY=/var/lib/jenkins/devops.pem']) {
-          sshagent(credentials: ['devops.pem']) {
-            sh 'ssh -o StrictHostKeyChecking=no ubuntu@44.211.205.183 ls'
-          }
+    stages {
+        stage('Test SSH Connection') {
+            steps {
+                sshagent(['0199d99b-2d91-426e-97a8-595cbbda23b2']) {
+                    sh "ls"
+                }
+            }
         }
-      }
     }
-  }
-}
-
