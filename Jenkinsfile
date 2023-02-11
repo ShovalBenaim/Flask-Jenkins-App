@@ -1,11 +1,11 @@
 pipeline {
     agent any
-
     stages {
-        stage('Test SSH Connection') {
+        stage("SSH to Remote Host") {
             steps {
-                sh 'ssh -i /var/lib/jenkins/devops.pem ubuntu@44.211.205.183'
-                sh 'ls'
+                sshagent(['0199d99b-2d91-426e-97a8-595cbbda23b2']) {
+                    sh "ls"
+                }
             }
         }
     }
